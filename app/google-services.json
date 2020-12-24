@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "888165270599",
+    "project_id": "inijogja-3a0a2",
+    "storage_bucket": "inijogja-3a0a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888165270599:android:88832fa2d8cc685ee19d62",
+        "android_client_info": {
+          "package_name": "com.example.inijogja"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888165270599-24grq21n9pjpgonu6dfnd7acl7n4jj23.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCG5InEGvSKKSCwQNAk5yvpmiKkudNc3NU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888165270599-24grq21n9pjpgonu6dfnd7acl7n4jj23.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
