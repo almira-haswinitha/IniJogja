@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.inijogja.Activity.MainActivity;
 import com.example.inijogja.Activity.SignUp;
+import com.example.inijogja.Login;
 import com.example.inijogja.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,11 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class LoginFragment extends Fragment {
-    TextView tvSignUp;
-    EditText etEmail, etPassword;
-    Button btnLogin;
-    FirebaseAuth mAuth;
-    FirebaseAuth.AuthStateListener mAuthStateListener;
+    Button btn_Login;
 
 
 
@@ -47,68 +44,13 @@ public class LoginFragment extends Fragment {
 //        return inflater.inflate(R.layout.fragment_login, container, false);
 
         View rootView = inflater.inflate(R.layout.fragment_login, container, false);
-        tvSignUp = rootView.findViewById(R.id.tv_signup);
-        mAuth = FirebaseAuth.getInstance();
-        etEmail = rootView.findViewById(R.id.et_email);
-        etPassword = rootView.findViewById(R.id.et_password);
-        btnLogin = rootView.findViewById(R.id.btn_login);
 
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
-                if( mFirebaseUser != null ){
-                    Toast.makeText(getActivity(),"You are logged in",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(), MainActivity.class);
-                    startActivity(i);
-                }
-                else{
-                    Toast.makeText(getActivity(),"Please Login",Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
+        btn_Login = rootView.findViewById(R.id.btn_Login);
 
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btn_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = etEmail.getText().toString();
-                String pw = etPassword.getText().toString();
-                if (email.isEmpty()) {
-                    etEmail.setError("Please enter email");
-                    etEmail.requestFocus();
-                }
-                else if(pw.isEmpty()) {
-                    etPassword.setError("Please enter password");
-                    etPassword.requestFocus();
-                }
-                else if (email.isEmpty() && pw.isEmpty()) {
-                    Toast.makeText(getActivity(), "Fields Are Empty!", Toast.LENGTH_SHORT).show();
-                }
-                else if(!(email.isEmpty() && pw.isEmpty())) {
-                    mAuth.signInWithEmailAndPassword(email,pw).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (!task.isSuccessful()) {
-                                Toast.makeText(getActivity(), "Login Unsuccessful, Please Try Again", Toast.LENGTH_SHORT).show();
-                            }
-                            else{
-                                Intent intToHome = new Intent(getActivity(),MainActivity.class);
-                                startActivity(intToHome);
-                            }
-                        }
-                    });
-                }
-                else {
-                    Toast.makeText(getActivity(), "Error Ocured!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        tvSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SignUp.class);
+                Intent intent = new Intent(getActivity(), Login.class);
                 startActivity(intent);
             }
         });
@@ -116,9 +58,5 @@ public class LoginFragment extends Fragment {
         return rootView;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthStateListener);
-    }
+
 }
